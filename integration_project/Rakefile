@@ -1,0 +1,2 @@
+require 'version_bumper'
+bumper_file 'version.txt'
