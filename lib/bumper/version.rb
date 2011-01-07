@@ -5,10 +5,14 @@ module Bumper
       define_method part do 
         @v[part]
       end
+
+      define_method "bump_#{part}" do
+        bump(part)
+      end
     end
     
     def initialize(v)
-      @v= {}
+      @v = {}
       if v =~ /^(\d+)\.(\d+)\.(\d+)(?:\.(.*?))?$/
           @v['major'] = $1.to_i
           @v['minor'] = $2.to_i
@@ -29,18 +33,10 @@ module Bumper
       @v[part]
     end
     
-    def method_missing(m, *args, &block)
-      if(m.to_s =~ /^bump_(.*)$/)
-        if @v.has_key? $1
-          return send(:bump, $1)
-        end
-      end
-      super
-    end
-    
     def to_s
       "#{major}.#{minor}.#{revision}" + (build.nil? ? "" : ".#{build}")
     end
+
     def write(f)
       File.open(f,'w'){ |h| h.write(self.to_s) }      
     end
