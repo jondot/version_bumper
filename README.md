@@ -5,11 +5,12 @@ Simple. Bump your versions.
 
     $ gem install version_bumper
 
+First lets agree that version looks like this: major.minor.revision.build
 In your Rakefile `require 'version_bumper'` and you're done.
   
     $ rake -T
     rake bump:build     # bump build
-    rake bump:init      # write a blank version to VERSION
+    rake bump:init      # write a blank version
     rake bump:major     # bump major
     rake bump:minor     # bump minor
     rake bump:revision  # bump revision
