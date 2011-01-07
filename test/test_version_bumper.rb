@@ -5,6 +5,12 @@ class TestVersionBumper < MiniTest::Unit::TestCase
     v = Bumper::Version.new('0.0.0.0')
     assert_equal '0.0.0.0', v.to_s
   end
+
+  def test_version_without_build
+    v = Bumper::Version.new('0.0.0')
+    assert_nil v.build
+    assert_equal '0.0.0', v.to_s
+  end
   
   def test_that_it_should_have_correct_properties_test
     v = Bumper::Version.new('0.0.0.0')
@@ -20,7 +26,7 @@ class TestVersionBumper < MiniTest::Unit::TestCase
     assert_equal 1, v.bump_revision
     assert_equal 1, v.bump_minor
     assert_equal 1, v.bump_major
-    assert_equal '1.0.0.0', v.to_s            
+    assert_equal '1.0.0.0', v.to_s
   end
 
   def test_that_it_should_bump_versions_alt
@@ -29,7 +35,7 @@ class TestVersionBumper < MiniTest::Unit::TestCase
     assert_equal 1, v.bump_minor
     assert_equal 1, v.bump_revision
     assert_equal '1', v.bump_build
-    assert_equal '1.1.1.1', v.to_s            
+    assert_equal '1.1.1.1', v.to_s
   end
   
   def test_that_when_bumping_reset_smaller_versions
