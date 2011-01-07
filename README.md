@@ -3,6 +3,15 @@ version_bumper
 
 Simple. Bump your versions.
 
+What is it for?
+---------------
+Given that we agree upon a [version format][1], maintain a version for your project. The version is kept in a file, in the root of your project, which is a common thing to do.  
+Especially useful for developers using rake as their build runner in non-ruby projects (don't you?).
+
+
+
+Quick start
+-----------
     $ gem install version_bumper
 
 First lets agree that version looks like this: major.minor.revision.build  
@@ -43,3 +52,6 @@ Copyright
 Copyright (c) 2011 Dotan Nahum. See LICENSE.txt for
 further details.
 
+
+
+[1]: http://semver.org
