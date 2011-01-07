@@ -5,7 +5,7 @@ Simple. Bump your versions.
 
     $ gem install version_bumper
 
-First lets agree that version looks like this: major.minor.revision.build
+First lets agree that version looks like this: major.minor.revision.build  
 In your Rakefile `require 'version_bumper'` and you're done.
   
     $ rake -T
