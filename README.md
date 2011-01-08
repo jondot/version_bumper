@@ -15,7 +15,7 @@ Quick start
     $ gem install version_bumper
 
 First lets agree that version looks like this: major.minor.revision.build  
-In your Rakefile `require 'version_bumper'` and you're done.
+In your `Rakefile` `require 'version_bumper'` and you're done. If you're in rails, `gem 'version_bumper'` to your `Gemfile` in addition.
   
     $ rake -T
     rake bump:build     # bump build
