@@ -22,15 +22,16 @@ module Bumper
     end
     
     def bump(part)
-      @v[part] = @v[part].succ
+      version = @v[part] = @v[part].succ
       
-      return @v[part] if part == :build
+      return version if part == :build
       @v[:build] = '0'
-      return @v[part] if part == :revision
+      return version if part == :revision
       @v[:revision] = 0
-      return @v[part] if part == :minor
+      return version if part == :minor
       @v[:minor] = 0
-      @v[part]
+
+      version
     end
     
     def to_s
