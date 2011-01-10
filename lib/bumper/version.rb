@@ -34,7 +34,7 @@ module Bumper
     end
     
     def to_s
-      "#{major}.#{minor}.#{revision}" + (build.nil? ? "" : ".#{build}")
+      [major, minor, patch, build].compact.join('.')
     end
 
     def write(f)
