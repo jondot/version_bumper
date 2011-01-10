@@ -34,7 +34,7 @@ module Bumper
     end
     
     def to_s
-      [major, minor, patch, build].compact.join('.')
+      [major, minor, revision, build].compact.join('.')
     end
 
     def write(f)
