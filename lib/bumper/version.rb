@@ -14,10 +14,10 @@ module Bumper
     def initialize(v)
       @v = {}
       if v =~ /^(\d+)\.(\d+)\.(\d+)(?:\.(.*?))?$/
-          @v[:major]    = $1.to_i
-          @v[:minor]    = $2.to_i
-          @v[:revision] = $3.to_i
-          @v[:build]    = $4
+        @v[:major]    = $1.to_i
+        @v[:minor]    = $2.to_i
+        @v[:revision] = $3.to_i
+        @v[:build]    = $4
       end
     end
     
