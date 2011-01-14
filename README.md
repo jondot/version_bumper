@@ -48,8 +48,8 @@ Contributing to version_bumper
 
 Commiters
 ---------
-jondot (Dotan Nahum)
-splattael (Peter Suschlik)
+jondot (Dotan Nahum)  
+splattael (Peter Suschlik)  
 
 Copyright
 ---------
