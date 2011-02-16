@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{version_bumper}
-  s.version = "0.1.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dotan Nahum"]
-  s.date = %q{2011-01-05}
+  s.date = %q{2011-02-17}
   s.description = %q{Simply bump your versions}
   s.email = %q{jondotan@gmail.com}
   s.extra_rdoc_files = [
