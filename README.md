@@ -50,6 +50,8 @@ Commiters
 ---------
 jondot (Dotan Nahum)  
 splattael (Peter Suschlik)  
+derickbailey (Derick Bailey)
+
 
 Copyright
 ---------
