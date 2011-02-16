@@ -46,4 +46,10 @@ class TestVersionBumper < MiniTest::Unit::TestCase
     assert_equal '0', v.build
     assert_equal '2.0.0.0', v.to_s
   end
+
+  def test_that_bumping_major_without_build_does_not_add_build
+    v = Bumper::Version.new('0.0.0')
+    v.bump_major
+    assert_equal '1.0.0', v.to_s
+  end
 end

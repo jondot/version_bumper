@@ -25,7 +25,7 @@ module Bumper
       version = @v[part] = @v[part].succ
       
       return version if part == :build
-      @v[:build] = '0'
+      @v[:build] = '0' if @v[:build]
       return version if part == :revision
       @v[:revision] = 0
       return version if part == :minor
