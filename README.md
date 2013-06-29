@@ -83,8 +83,8 @@ Commiters
 ---------
 jondot (Dotan Nahum)  
 splattael (Peter Suschlik)  
-derickbailey (Derick Bailey)
-drh-stanford (Darren Hardy)
+derickbailey (Derick Bailey)  
+drh-stanford (Darren Hardy)  
 
 
 Copyright
