@@ -32,11 +32,11 @@ namespace :bump do
   end
   
   desc "bump patch or bump patch[tag]"
-  task :patch [:tag] do
-    if tag.nil?
-      bumper_version.bump_patch
+  task :patch, :tag do |t, args|
+    if args[:tag] and not args[:tag].empty?
+      bumper_version.bump_patch_tag args[:tag]
     else
-      bumper_version.bump_patch_tag
+      bumper_version.bump_patch
     end
     persist!
   end
