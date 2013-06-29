@@ -18,22 +18,55 @@ First lets agree that version looks like this: major.minor.revision.build
 In your `Rakefile` `require 'version_bumper'` and you're done. If you're in rails, `gem 'version_bumper'` to your `Gemfile` in addition.
   
     $ rake -T
-    rake bump:build     # bump build
     rake bump:init      # write a blank version
     rake bump:major     # bump major
     rake bump:minor     # bump minor
-    rake bump:revision  # bump revision
-    
+    rake bump:patch     # bump patch
+    rake bump:build     # bump build
     
     $ rake bump:init
     version: 0.0.0.0
-    $ rake bump:revision
+    $ rake bump:build
+    version: 0.0.0.1
+    $ rake bump:patch
     version: 0.0.1.0
+    $ rake bump:minor
+    version: 0.1.0.0
     $ rake bump:major
     version: 1.0.0.0
+    
 
 You can optionally use `bumper_file 'version.txt'` in your rake file to switch from the default `VERSION` file name.
 Use `bumper_version` anywhere you need access to the current version in your rake script.
+
+Pre-release versioning
+----------------------
+
+You can append a hyphen tag to the *patch* version, e.g., 1.0.0-alpha, 1.0.0-beta, 1.0.0-beta2,
+1.0.0-gamma, 1.0.0-rc, 1.0.0-rc2, etc.
+
+    $ rake bump:init
+    version: 0.0.0.0
+    $ rake bump:minor
+    version: 0.1.0.0
+    $ rake bump:patch[beta]
+    version: 0.1.1-beta.0
+    $ rake bump:patch[beta]
+    version: 0.1.1-beta2.0
+    $ rake bump:build
+    version: 0.1.1-beta2.1
+    $ rake bump:patch[rc]
+    version: 0.1.1-rc.0
+    $ rake bump:patch[rc]
+    version: 0.1.1-rc2.0
+    $ rake bump:patch
+    version: 0.1.1.0
+    $ rake bump:patch
+    version: 0.1.2.0
+    $ rake bump:minor
+    version: 0.2.0.0
+    $ rake bump:patch[alpha]
+    version: 0.2.1-alpha.0
 
 Contributing to version_bumper
 ------------------------------
@@ -51,6 +84,7 @@ Commiters
 jondot (Dotan Nahum)  
 splattael (Peter Suschlik)  
 derickbailey (Derick Bailey)
+drh-stanford (Darren Hardy)
 
 
 Copyright

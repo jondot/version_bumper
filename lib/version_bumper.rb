@@ -31,9 +31,13 @@ namespace :bump do
     persist!
   end
   
-  desc "bump revision"
-  task :revision do
-    bumper_version.bump_revision
+  desc "bump patch[tag]"
+  task :patch [:tag] do
+    if tag.nil?
+      bumper_version.bump_patch
+    else
+      bumper_version.bump_patch_tag
+    end
     persist!
   end
 
@@ -47,4 +51,12 @@ namespace :bump do
     bumper_version.write(@vfile)    
     puts "version: #{bumper_version}"
   end
+  
+  # @deprecated Use :patch
+  desc "bump revision"
+  task :revision do
+    bumper_version.bump_patch
+    persist!
+  end
+
 end
