@@ -21,7 +21,7 @@ In your `Rakefile` `require 'version_bumper'` and you're done. If you're in rail
     rake bump:init      # write a blank version
     rake bump:major     # bump major
     rake bump:minor     # bump minor
-    rake bump:patch     # bump patch
+    rake bump:patch     # bump patch or bump patch[tag]
     rake bump:build     # bump build
     
     $ rake bump:init

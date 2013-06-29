@@ -31,7 +31,7 @@ namespace :bump do
     persist!
   end
   
-  desc "bump patch[tag]"
+  desc "bump patch or bump patch[tag]"
   task :patch [:tag] do
     if tag.nil?
       bumper_version.bump_patch
