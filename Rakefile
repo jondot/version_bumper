@@ -38,9 +38,9 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
+Rake::TestTask.new(:rcov) do |test|
+  ENV['COVERAGE'] = 'true'
+  test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
 end

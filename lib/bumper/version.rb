@@ -7,7 +7,6 @@ module Bumper
       end
 
       define_method "#{part}=" do |arg|
-        puts "method #{part}= set #{part} to #{arg}"
         @v[part] = arg
       end
 
@@ -52,7 +51,7 @@ module Bumper
     end
 
     def patch_tag= tag
-      @v[:patch_tag] = (tag.nil? or tag.empty? ? nil : tag.to_s)
+      @v[:patch_tag] = (tag.nil? or tag.empty?) ? nil : tag.to_s
     end
     
     # patch tags go from alpha, alpha2, alpha3, etc.

@@ -143,6 +143,18 @@ class TestVersionBumper < MiniTest::Test
     assert_equal '0.2.1-alpha.0', v.to_s
   end
   
+  def test_patch_tag_messy
+    v = Bumper::Version.new('0.0.0-alpha.0')
+    assert_equal 'alpha', v.patch_tag
+    v.patch_tag = nil
+    puts v.patch_tag
+    assert_equal nil, v.patch_tag
+  end
+  
+  def test_invalid_versions
+    assert_raises(ArgumentError) {Bumper::Version.new('0.0.alpha.0')}
+  end
+  
   def test_backward_compat
     v = Bumper::Version.new('0.0.0.0')
     assert_equal '0.0.0.0', v.to_s
