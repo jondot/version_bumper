@@ -42,8 +42,9 @@ Use `bumper_version` anywhere you need access to the current version in your rak
 Pre-release versioning
 ----------------------
 
-You can append a hyphen tag to the *patch* version, e.g., 1.0.0-alpha, 1.0.0-beta, 1.0.0-beta2,
-1.0.0-gamma, 1.0.0-rc, 1.0.0-rc2, etc.
+You can append a hyphen tag to the *patch* version, e.g., 1.0.0-alpha, 1.0.0-beta, 1.0.0-beta2, 1.0.0-gamma, 1.0.0-rc, 1.0.0-rc2, etc.
+
+Or you can prepend a tag to the *build* version, e.g., 1.0.0.alpha1, 1.0.0.beta1, 1.0.0.rc3, etc.
 
     $ rake bump:init
     version: 0.0.0.0
@@ -65,6 +66,12 @@ You can append a hyphen tag to the *patch* version, e.g., 1.0.0-alpha, 1.0.0-bet
     version: 0.1.2.0
     $ rake bump:minor
     version: 0.2.0.0
+    $ rake bump:build[beta]
+    version: 0.2.0.beta1
+    $ rake bump:build
+    version: 0.2.0.beta2
+    $ rake bump:build[rc]
+    version: 0.2.0.rc1
     $ rake bump:patch[alpha]
     version: 0.2.1-alpha.0
 

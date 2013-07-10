@@ -141,18 +141,45 @@ class TestVersionBumper < MiniTest::Test
     assert_equal '0.2.0.0', v.to_s
     assert_equal 'alpha', v.bump_patch_tag('alpha')
     assert_equal '0.2.1-alpha.0', v.to_s
+    assert_equal 3, v.bump_minor
+    assert_equal '0.3.0.0', v.to_s
+    v.build = 'rc1'
+    assert_equal '0.3.0.rc1', v.to_s
+    assert_equal 'rc2', v.bump_build
+    assert_equal '0.3.0.rc2', v.to_s
   end
   
+  def test_build_rollover0
+    v = Bumper::Version.new('0.0.0.rc9')
+    assert_equal 'rc9', v.build
+    assert_equal 'rc10', v.bump_build
+    assert_equal '0.0.0.rc10', v.to_s
+  end
+
+  def test_build_rollover00
+    v = Bumper::Version.new('0.0.0.rc99')
+    assert_equal 'rc100', v.bump_build
+    assert_equal '0.0.0.rc100', v.to_s
+  end
+
+  def test_build_rollover000
+    v = Bumper::Version.new('0.0.0.rc999')
+    assert_equal 'rc1000', v.bump_build
+    assert_equal '0.0.0.rc1000', v.to_s
+  end
+
   def test_patch_tag_messy
     v = Bumper::Version.new('0.0.0-alpha.0')
     assert_equal 'alpha', v.patch_tag
     v.patch_tag = nil
-    puts v.patch_tag
+    # puts v.patch_tag
     assert_equal nil, v.patch_tag
   end
   
   def test_invalid_versions
-    assert_raises(ArgumentError) {Bumper::Version.new('0.0.alpha.0')}
+    %w{0.0.0.1rc9 0.0.0.9a}.each do |v|
+      assert_raises(ArgumentError) {Bumper::Version.new(v)}
+    end
   end
   
   def test_backward_compat

@@ -41,9 +41,13 @@ namespace :bump do
     persist!
   end
 
-  desc "bump build"
-  task :build do
-    bumper_version.bump_build
+  desc "bump build or bump build[tag]"
+  task :build, :tag do |t, args|
+    if args[:tag] and not args[:tag].empty?
+      bumper_version.build = args[:tag] =~ /\d+$/ ? args[:tag] : (args[:tag] + '1')
+    else
+      bumper_version.bump_build
+    end
     persist!
   end
   
