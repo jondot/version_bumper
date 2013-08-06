@@ -31,15 +31,23 @@ namespace :bump do
     persist!
   end
   
-  desc "bump revision"
-  task :revision do
-    bumper_version.bump_revision
+  desc "bump patch or bump patch[tag]"
+  task :patch, :tag do |t, args|
+    if args[:tag] and not args[:tag].empty?
+      bumper_version.bump_patch_tag args[:tag]
+    else
+      bumper_version.bump_patch
+    end
     persist!
   end
 
-  desc "bump build"
-  task :build do
-    bumper_version.bump_build
+  desc "bump build or bump build[tag]"
+  task :build, :tag do |t, args|
+    if args[:tag] and not args[:tag].empty?
+      bumper_version.build = args[:tag] =~ /\d+$/ ? args[:tag] : (args[:tag] + '1')
+    else
+      bumper_version.bump_build
+    end
     persist!
   end
   
@@ -47,4 +55,12 @@ namespace :bump do
     bumper_version.write(@vfile)    
     puts "version: #{bumper_version}"
   end
+  
+  # @deprecated Use :patch
+  desc "bump revision"
+  task :revision do
+    bumper_version.bump_patch
+    persist!
+  end
+
 end

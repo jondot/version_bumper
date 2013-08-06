@@ -7,13 +7,15 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'minitest/unit'
+
+if ENV["COVERAGE"]
+  require 'simplecov'
+  SimpleCov.start 
+end
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'version_bumper'
 
-class MiniTest::Unit::TestCase
-end
-
-MiniTest::Unit.autorun
+require 'minitest'
+MiniTest.autorun
