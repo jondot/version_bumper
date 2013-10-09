@@ -9,10 +9,13 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
+BUNDLE_VERSION = File.exist?('VERSION') ? File.read('VERSION').strip : ""
+
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "version_bumper"
+  gem.version = BUNDLE_VERSION
   gem.homepage = "http://github.com/jondot/version_bumper"
   gem.license = "MIT"
   gem.summary = %Q{Rake task to bump your versions}
@@ -35,21 +38,19 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
+Rake::TestTask.new(:rcov) do |test|
+  ENV['COVERAGE'] = 'true'
+  test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
 end
 
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "version_bumper #{version}"
+  rdoc.title = "version_bumper #{BUNDLE_VERSION}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
